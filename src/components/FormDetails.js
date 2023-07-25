@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function FormDetails({ selectedEmployee, onClick, onUpdateEmployee }) {
   //no need to change the name of the employee
-  const [name, setName] = useState(selectedEmployee.name);
+  const [name, setName] = useState("");
+
   const [role, setRole] = useState(selectedEmployee.role);
   const [email, setEmail] = useState(selectedEmployee.email);
 
@@ -30,12 +31,17 @@ function FormDetails({ selectedEmployee, onClick, onUpdateEmployee }) {
     localStorage.setItem("employees", JSON.stringify(updatedEmployee));
   };
 
+  useEffect(() => {
+    setName(selectedEmployee.name);
+  }, [selectedEmployee.name]);
+
   return (
     <>
       <form onSubmit={SubmitUpdate} onClick={onClick}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
             <div className="sm:col-span-4">
+              <p className="text-xs">Tap The Field To Edit</p>
               <div className=" mt-4 border p-4 transition-all ease-in-out  hover:rounded-lg  hover:shadow-lg">
                 <label className="text-xs tracking-widest ">NAME</label>
                 <input
