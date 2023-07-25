@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function FormDetails({ selectedEmployee, onClick, onUpdateEmployee }) {
-
   //no need to change the name of the employee
   const [name, setName] = useState(selectedEmployee.name);
   const [role, setRole] = useState(selectedEmployee.role);

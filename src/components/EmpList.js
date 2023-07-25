@@ -6,20 +6,18 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 
 function EmpList() {
   // Hooks
-  const [people, setPeople] = useState([]); //All Employee 
+  const [people, setPeople] = useState([]); //All Employee
 
-  const [addname, setaddname] = useState(" "); //Add Employee name 
-  const [addemail, setaddemail] = useState(" "); //Add Employee email 
+  const [addname, setaddname] = useState(" "); //Add Employee name
+  const [addemail, setaddemail] = useState(" "); //Add Employee email
   const [addrole, setaddrole] = useState(" "); //Add Employee role
-  
-  
-  const [searchQuery, setSearchQuery] = useState(""); // Search query 
-  const [modalShow, setModalShow] = useState(false); // Modal 
-  const [selectedEmployee, setSelectedEmployee] = useState(null); // Selected employee 
-  
-  const cancelButtonRef = useRef(null); 
-  
- 
+
+  const [searchQuery, setSearchQuery] = useState(""); // Search query
+  const [modalShow, setModalShow] = useState(false); // Modal
+  const [selectedEmployee, setSelectedEmployee] = useState(null); // Selected employee
+
+  const cancelButtonRef = useRef(null);
+
   // view employee details in a modal
   const handleViewDetails = (employee) => {
     setSelectedEmployee(employee);
@@ -42,7 +40,7 @@ function EmpList() {
     setaddrole(e.target.value);
   };
 
-  // Filter employees 
+  // Filter employees
   const filteredPeople = people.filter((person) =>
     person.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -112,12 +110,12 @@ function EmpList() {
         className="border px-3 py-2 rounded-md mb-4 w-full focus:border-0"
       />
       {/* Employee List */}
-      <div className="bg-white p-8 rounded-xl">
-        <ul role="list" className="divide-y divide-gray-100">
+      <div className="p-8 rounded-xl">
+        <ul className="divide-y divide-gray-100">
           {filteredPeople.map((person) => (
             <li
               key={person}
-              className="flex justify-between py-5 hover:bg-indigo-500 p-4 rounded-xl ease-in-out transition-all"
+              className="flex justify-between py-5 hover:shadow-xl border p-4 rounded-xl ease-in-out transition-all"
               onClick={() => handleViewDetails(person)}
             >
               <p className="text-sm leading-6 text-gray-900 font-bold">
@@ -139,7 +137,6 @@ function EmpList() {
             </li>
           ))}
         </ul>
-
 
         {/* Form to Add New Employee */}
         <form
