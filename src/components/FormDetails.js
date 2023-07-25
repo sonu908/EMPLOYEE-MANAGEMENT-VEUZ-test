@@ -1,35 +1,34 @@
 import React, { useState } from "react";
 
 function FormDetails({ selectedEmployee, onClick, onUpdateEmployee }) {
+
+  //no need to change the name of the employee
   const [name, setName] = useState(selectedEmployee.name);
   const [role, setRole] = useState(selectedEmployee.role);
   const [email, setEmail] = useState(selectedEmployee.email);
 
+  // role field change
   const handleRoleChange = (e) => {
     setRole(e.target.value);
   };
+
+  // email field change
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  // Save the updated details to local storage
-
   const SubmitUpdate = (e) => {
     e.preventDefault();
-    // Create an updatedEmployee object with the edited details
     const updatedEmployee = {
       name: name,
       role: role,
       email: email,
-      // Add other details here...
     };
+
     onUpdateEmployee(updatedEmployee);
 
-    console.log(name, email, role);
-    // Save the updated details to local storage
+    //update details to local storage
     localStorage.setItem("employees", JSON.stringify(updatedEmployee));
-
-    console.log(name, email, role);
   };
 
   return (
